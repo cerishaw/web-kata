@@ -12,12 +12,13 @@ interface AppProps { }
 interface AppState {
   products: Product[];
   productToAdd: Product | undefined;
+  productNameToFilter: string;
 }
 
 export default class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
-    this.state = { products: data, productToAdd: undefined };
+    this.state = { products: data, productToAdd: undefined, productNameToFilter: '' };
 
     this.handleAddProduct = this.handleAddProduct.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
