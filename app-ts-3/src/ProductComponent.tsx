@@ -8,11 +8,18 @@ interface Props {
   removeProduct: Function;
 }
 
-interface State { }
+interface State {
+  showProduct: Boolean;
+ }
 
 class ProductComponent extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    this.state = {showProduct: false};
+  }
+
+  showHideProductDescription() {
+    this.setState({showProduct: !this.state.showProduct});
   }
 
   render(): JSX.Element {
@@ -20,7 +27,8 @@ class ProductComponent extends Component<Props, State> {
       <div className='product'>
         <div className='details'>
           <div className='name'>{this.props.product.name}</div>
-          <div className='desc'>{this.props.product.description}</div>
+          <a onClick={() => this.showHideProductDescription()}>{this.state.showProduct ? '-' : '+'}</a>
+          {this.state.showProduct ? <div className='desc'>{this.props.product.description}</div> : null}
         </div>
         <div className='actions'>
           <div className='remove' onClick={() => this.props.removeProduct(this.props.product)}>x</div>
