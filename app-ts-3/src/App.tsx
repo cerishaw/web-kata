@@ -71,6 +71,7 @@ export default class App extends Component<AppProps, AppState> {
 
     const productName = (this.state.productToAdd && this.state.productToAdd.name) || '';
     const productDescription = (this.state.productToAdd && this.state.productToAdd.description) || '';
+    const productNameFilter = this.state.productNameToFilter;
 
     return (
       <div className='App'>
@@ -81,7 +82,7 @@ export default class App extends Component<AppProps, AppState> {
           <form>
             <label>
               Filter by product name:
-              <input name='filterProduct' onChange={this.handleFilterChanged}/>
+              <input name='filterProduct' onChange={this.handleFilterChanged} value={productNameFilter}/>
             </label>
           </form>
         </div>
