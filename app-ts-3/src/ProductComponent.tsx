@@ -20,7 +20,7 @@ class ProductComponent extends Component<Props, ProductComponentState> {
     this.handleToggleDescription = this.handleToggleDescription.bind(this);
   }
 
-    handleToggleDescription(event: React.MouseEvent<HTMLElement>): void {
+    handleToggleDescription(): void {
         let showDescription = this.state.showDescription;
         this.setState({showDescription: !showDescription});
     }
@@ -30,9 +30,9 @@ class ProductComponent extends Component<Props, ProductComponentState> {
       <div className='product'>
         <div className='details'>
           <div className='name'>{this.props.product.name}
-          <span onClick={this.handleToggleDescription}>{this.state.showDescription ? ' - ' : ' + '}</span>
-          </div>
 
+          </div>
+            <span onClick={this.handleToggleDescription}>{this.state.showDescription ? ' - ' : ' + '}</span>
             {this.state.showDescription ? <div className='desc'>{this.props.product.description}</div> : null}
         </div>
         <div className='actions'>
