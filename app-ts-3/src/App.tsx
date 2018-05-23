@@ -110,7 +110,8 @@ export default class App extends Component<AppProps, AppState> {
         </div>
         <div className='products-container'>
           <ProductsComponent
-            products={this.state.products}
+            products={this.state.products
+                .filter(p => p.name.toLowerCase().includes(this.state.productNameToFilter.toLowerCase()))}
             removeProduct={this.removeProduct}
           />
         </div>
