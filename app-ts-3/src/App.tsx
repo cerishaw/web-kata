@@ -71,7 +71,14 @@ export default class App extends Component<AppProps, AppState> {
         <div className='App-header'>
           <h2>Kata 3- Filter, show and hide objects</h2>
         </div>
-        <div className='filter-products'>Filter products here...</div>
+        <div className='filter-products'>
+          <form>
+            <label>
+              Filter by product name:
+              <input name='filterProduct'/>
+            </label>
+          </form>
+        </div>
         <div className='add-product'>
           <form onSubmit={this.handleAddProduct}>
             <label>product name:</label>
@@ -92,6 +99,7 @@ export default class App extends Component<AppProps, AppState> {
             <br /><br />
             <input type='submit' value='add product' />
           </form>
+
         </div>
         <div className='products-container'>
           <ProductsComponent
