@@ -24,6 +24,7 @@ export default class App extends Component<AppProps, AppState> {
     this.removeProduct = this.removeProduct.bind(this);
     this.handleProductNameChange = this.handleProductNameChange.bind(this);
     this.handleProductDescriptionChange = this.handleProductDescriptionChange.bind(this);
+    this.handleFilterChanged = this.handleFilterChanged.bind(this);
   }
 
   handleProductNameChange(event: React.FormEvent<HTMLInputElement>) {
@@ -54,6 +55,10 @@ export default class App extends Component<AppProps, AppState> {
     this.setState({ products, productToAdd: undefined });
   }
 
+  handleFilterChanged(event: React.FormEvent<HTMLInputElement>) {
+    const filterName = event.currentTarget.value;
+    this.setState({productNameToFilter: filterName});
+  }
   removeProduct(product: Product): void {
 
     const products = this.state.products.filter(
@@ -76,7 +81,7 @@ export default class App extends Component<AppProps, AppState> {
           <form>
             <label>
               Filter by product name:
-              <input name='filterProduct'/>
+              <input name='filterProduct' onChange={this.handleFilterChanged}/>
             </label>
           </form>
         </div>
