@@ -32,11 +32,3 @@
 .product .actions .remove{
     cursor: pointer;
 }
-
-.product-expand{
-    padding-left: 1em;
-}
-
-.product-expand:hover{
-    cursor: pointer;
-}

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import './Products.css';
 import { Product } from './Models/Product';
+import { Toggler } from './Toggler';
 
 interface Props {
   product: Product;
@@ -22,7 +23,7 @@ class ProductComponent extends Component<Props, State> {
 
   toggleDesc() {
     const prev = this.state.showDescription;
-    this.setState({showDescription: !prev});
+    this.setState({ showDescription: !prev });
   }
 
   render(): JSX.Element {
@@ -31,12 +32,7 @@ class ProductComponent extends Component<Props, State> {
         <div className='details'>
           <div className='name'>
             {this.props.product.name}
-            <div
-              className='product-expand'
-              onClick={this.toggleDesc}
-            >
-              {this.state.showDescription ? '+' : '-'}
-            </div>
+            <Toggler toggle={this.state.showDescription} toggleOnClick={this.toggleDesc} />
           </div>
           {this.state.showDescription ? <div className='desc'>{this.props.product.description}</div> : null}
         </div>

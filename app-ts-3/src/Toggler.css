@@ -1,0 +1,7 @@
+.toggle-expand{
+    padding-left: 1em;
+}
+
+.toggle-expand:hover{
+    cursor: pointer;
+}
