@@ -14,10 +14,10 @@ class ProductsComponent extends Component<Props, {}> {
         return (
             <div className='products'>
                 {this.props.products.map(
-                    (p: Product, i: number) => {
+                    (p: Product) => {
                         return <ProductComponent
                             product={p}
-                            key={'product-' + i}
+                            key={'product-' + p.name}
                             removeProduct={this.props.removeProduct}
                         />;
                     }

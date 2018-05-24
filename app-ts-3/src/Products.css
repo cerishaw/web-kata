@@ -25,6 +25,11 @@
     flex-direction: row;
 }
 
+.product .showDescription{
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 .product .desc{
     font-size: 10pt;
 }
