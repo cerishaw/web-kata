@@ -12,12 +12,17 @@ interface AppProps { }
 interface AppState {
   products: Product[];
   productToAdd: Product | undefined;
+  productToFilter: string;
 }
 
 export default class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
-    this.state = { products: data, productToAdd: undefined };
+    this.state = { 
+      products: data, 
+      productToAdd: undefined,
+      productToFilter: ''
+    };
 
     this.handleAddProduct = this.handleAddProduct.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
@@ -53,6 +58,12 @@ export default class App extends Component<AppProps, AppState> {
     this.setState({ products, productToAdd: undefined });
   }
 
+  handleFilterProduct = (event: React.FormEvent<HTMLInputElement>): void => {
+    const productToFilter = event.currentTarget.value;
+
+    this.setState({productToFilter: productToFilter});
+  }
+
   removeProduct(product: Product): void {
 
     const products = this.state.products.filter(
@@ -71,7 +82,16 @@ export default class App extends Component<AppProps, AppState> {
         <div className='App-header'>
           <h2>Kata 3- Filter, show and hide objects</h2>
         </div>
-        <div className='filter-products'>Filter products here...</div>
+        <div className='filter-products'>
+          <form>
+            <label>productToFilter</label>
+              <input
+                type='text'
+                onChange={this.handleFilterProduct}
+                value={this.state.productToFilter}
+              />
+          </form>  
+        </div>
         <div className='add-product'>
           <form onSubmit={this.handleAddProduct}>
             <label>product name:</label>
@@ -95,7 +115,9 @@ export default class App extends Component<AppProps, AppState> {
         </div>
         <div className='products-container'>
           <ProductsComponent
-            products={this.state.products}
+            products={this.state.products.filter(
+              p => p.name.toLocaleLowerCase().includes(this.state.productToFilter.toLowerCase())
+            )}
             removeProduct={this.removeProduct}
           />
         </div>
