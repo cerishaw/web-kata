@@ -4,6 +4,7 @@ import { GetData } from './data';
 import ProductMenu from './ProductMenu';
 import ProductContainer from './ProductContainer';
 import { Product } from './Models/Product';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 interface Props { }
@@ -20,15 +21,17 @@ class App extends Component<Props, State> {
 
   render(): JSX.Element {
     return (
+      <Router>
       <div className='App'>
         <div className='App-header'>
           <h2>Kata 4 TypeScript - Add router to an app</h2>
         </div>
         <div className='products-container'>
           <ProductMenu products={this.state.products} />
-          <ProductContainer />
+          <Route path='/products/:productName' component={ProductContainer}/>
         </div>
       </div>
+      </Router>
     );
   }
 }
