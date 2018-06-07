@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Product } from './Models/Product';
 import './ProductContainer.css';
+import ProductComponent from './ProductComponent';
 
 interface Props extends RouteComponentProps<{ productName: string}> {
     products: Product[];
@@ -16,9 +17,11 @@ class ProductContainer extends Component<Props, State> {
   }
 
   render(): JSX.Element {
+
+    let product = this.props.products.filter((p) => p.name ===  this.props.match.params.productName)[0];
     return (
       <div className='product-container'>
-          {this.props.match.params.productName}
+          <ProductComponent product={product}/>
       </div>
     );
   }
