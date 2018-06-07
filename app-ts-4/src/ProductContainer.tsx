@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { Product } from './Models/Product';
 import './ProductContainer.css';
 
-interface Props extends RouteComponentProps<{ productName: string }> {
+interface Props extends RouteComponentProps<{ productName: string}> {
+    products: Product[];
 }
 
 interface State { }

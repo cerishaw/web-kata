@@ -28,7 +28,10 @@ class App extends Component<Props, State> {
                 </div>
                 <div className='products-container'>
                     <ProductMenu products={this.state.products}/>
-                    <Route path='/products/:productName' component={ProductContainer}/>
+                    <Route
+                        path='/products/:productName'
+                        render={(props) => <ProductContainer products={this.state.products} {...props}/>}
+                    />
                 </div>
             </div>
         );
