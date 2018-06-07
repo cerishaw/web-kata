@@ -7,31 +7,32 @@ import { Product } from './Models/Product';
 import './App.css';
 import { Route } from 'react-router-dom';
 
-interface Props { }
+interface Props {
+}
 
 interface State {
-  products: Product[];
+    products: Product[];
 }
 
 class App extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { products: GetData() };
-  }
+    constructor(props: Props) {
+        super(props);
+        this.state = {products: GetData()};
+    }
 
-  render(): JSX.Element {
-    return (
-      <div className='App'>
-        <div className='App-header'>
-          <h2>Kata 4 TypeScript - Add router to an app</h2>
-        </div>
-        <div className='products-container'>
-          <ProductMenu products={this.state.products} />
-            <Route path='/products/:productName' component={ProductContainer}/>
-        </div>
-      </div>
-    );
-  }
+    render(): JSX.Element {
+        return (
+            <div className='App'>
+                <div className='App-header'>
+                    <h2>Kata 4 TypeScript - Add router to an app</h2>
+                </div>
+                <div className='products-container'>
+                    <ProductMenu products={this.state.products}/>
+                    <Route path='/products/:productName' component={ProductContainer}/>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
