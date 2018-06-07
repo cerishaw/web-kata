@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Component } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import './ProductContainer.css';
 
-interface Props { }
+interface Props extends RouteComponentProps<{ productName: string }> {
+}
 
 interface State { }
 
@@ -14,7 +16,7 @@ class ProductContainer extends Component<Props, State> {
   render(): JSX.Element {
     return (
       <div className='product-container'>
-        Product container
+          {this.props.match.params.productName}
       </div>
     );
   }
