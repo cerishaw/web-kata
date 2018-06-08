@@ -22,15 +22,19 @@ class ProductContainer extends Component<Props, State> {
 
   render(): JSX.Element {
     const productName = this.props.match.params.productName;
-    const product = this.state.products.filter((p: Product) => p.name === productName)[0];
+    const product = this.state.products.find((p: Product) => p.name === productName) || null ;
     return (
+      
       <div className='product-container'>
-        <div className='product-name' >
-          {product.name}
-        </div>
-        <div className='product-description'>
-          {product.description}
-        </div>
+        {product ?
+          <div className='product'>
+            <div className='product-name' >
+              {product.name}
+            </div>
+            <div className='product-description'>
+              {product.description}
+            </div>
+          </div> : null }
       </div>
     );
   }
