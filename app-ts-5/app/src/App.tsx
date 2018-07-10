@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import { GetData } from './data';
+import { getProducts } from './data';
 import ProductMenu from './ProductMenu';
 import ProductContainer from './ProductContainer';
 import { Product } from './Models/Product';
@@ -21,8 +21,8 @@ class App extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    const data = await GetData();
-    this.setState({ products: data });
+    const products = await getProducts();
+    this.setState({ products: products });
   }
 
   render(): JSX.Element {
