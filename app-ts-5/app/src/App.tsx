@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import { getProducts, removeProduct } from './data';
+import { getProducts, addProduct, removeProduct } from './data';
 import ProductMenu from './ProductMenu';
 import ProductContainer from './ProductContainer';
 import { Product } from './Models/Product';
@@ -29,6 +29,11 @@ class App extends Component<Props, State> {
     this.populateProducts();
   }
 
+  addProduct = async (product: Product) => {
+    await addProduct(product);
+    this.populateProducts();
+  }
+
   async populateProducts() {
     const products = await getProducts();
     this.setState({ products: products });
@@ -41,7 +46,7 @@ class App extends Component<Props, State> {
           <h2>Kata 5 TypeScript - Interaction with backend server through REST API calls</h2>
         </div>
         <div className='products-container'>
-          <ProductMenu onRemove={this.removeProduct} products={this.state.products} />
+          <ProductMenu onAdd={this.addProduct} onRemove={this.removeProduct} products={this.state.products} />
           <Route
             exact={true}
             path='/products/:productName'
