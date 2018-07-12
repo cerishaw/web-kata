@@ -29,6 +29,11 @@
     font-size: 10pt;
 }
 
+.product .actions .expand{
+    cursor: pointer;
+    margin-right: 1em;
+}
+
 .product .actions .remove{
     cursor: pointer;
 }
