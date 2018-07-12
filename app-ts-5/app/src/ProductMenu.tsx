@@ -6,6 +6,7 @@ import './ProductMenu.css';
 
 interface ProductMenuProps {
   products: Product[];
+  deleteProduct: Function;
 }
 
 class ProductMenu extends Component<ProductMenuProps, {}> {
@@ -13,7 +14,7 @@ class ProductMenu extends Component<ProductMenuProps, {}> {
     return (
       <div className='product-menu'>
         {this.props.products.map(
-          (p, i) => <ProductItem product={p} key={'product-' + i} />
+          (p, i) => <ProductItem product={p} key={'product-' + i} deleteProduct={this.props.deleteProduct} />
         )}
       </div>
     );
