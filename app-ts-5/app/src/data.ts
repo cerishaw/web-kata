@@ -1,7 +1,7 @@
 import { Product } from './Models/Product';
 import 'whatwg-fetch';
 
-function GetData(): Promise<Product[]> {
+export function GetData(): Promise<Product[]> {
     return fetch('/api/products/get')
     .then(response => {
         return response.json();
@@ -12,4 +12,22 @@ function GetData(): Promise<Product[]> {
     });
 }
 
-export { GetData };
+export function DeleteData(productName: string): Promise<Response> {
+    return fetch(`/api/products/delete/${productName}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.status === 200) {
+            return {IsOk: true} as Response;
+        }
+        return {IsOk: false} as Response;
+    })
+    .catch(e => {
+        return {IsOk: false, ErrorMessage: e} as Response;
+    });
+}
+
+export interface Response {
+    IsOk: boolean;
+    ErrorMessage: string;
+}
