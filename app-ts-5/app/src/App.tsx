@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Component } from 'react';
 import { Route } from 'react-router-dom';
 
-import { GetData } from './data';
 import ProductMenu from './ProductMenu';
 import ProductContainer from './ProductContainer';
 import { Product } from './Models/Product';
@@ -17,8 +16,10 @@ interface State {
 class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    // Access the REST API instead of grabbing products from data.ts
-    this.state = { products: GetData() };
+    this.state = { products: [] };
+    fetch('/api/products/get').then(function(response: Response) {
+        return response.json();
+    }).then((json) => this.setState({products: json}));
   }
 
   render(): JSX.Element {
