@@ -27,6 +27,23 @@ export function DeleteData(productName: string): Promise<Response> {
     });
 }
 
+export function AddData(product: Product): Promise<Response> {
+    return fetch('/api/products/add/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(product)
+    })
+    .then(response => {
+        if (response.status === 200) {
+            return {IsOk: true} as Response;
+        }
+        return {IsOk: false} as Response;
+    })
+    .catch(e => {
+        return {IsOk: false, ErrorMessage: e} as Response;
+    });
+}
+
 export interface Response {
     IsOk: boolean;
     ErrorMessage: string;
