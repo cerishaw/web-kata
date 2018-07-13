@@ -5,4 +5,9 @@ function GetData(): Promise<Product[]> {
     return fetch('/api/products/get').then(data => (data.json()));
 }
 
-export { GetData };
+function RemoveProduct(product: Product): Promise<Product[]> {
+    const name = product.name;
+    return fetch(`/api/products/delete/${name}`, { method: 'DELETE' }).then(data => data.json());
+}
+
+export { GetData, RemoveProduct };

@@ -20,6 +20,11 @@ class App extends Component<Props, State> {
 
     // Access the REST API instead of grabbing products from data.ts
     this.state = { products: [] };
+    this.productDeleted = this.productDeleted.bind(this);
+  }
+
+  productDeleted(products: Product[]): void {
+    this.setState({ products });
   }
 
   componentDidMount() {
@@ -33,7 +38,7 @@ class App extends Component<Props, State> {
           <h2>Kata 5 TypeScript - Interaction with backend server through REST API calls</h2>
         </div>
         <div className='products-container'>
-          <ProductMenu products={this.state.products} />
+          <ProductMenu products={this.state.products} onProductDelete={this.productDeleted} />
           <Route
             exact={true}
             path='/products/:productName'
