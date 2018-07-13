@@ -23,8 +23,7 @@ class App extends Component<Props, State> {
     this.state = { products: [], newProduct: { name: '', description: '' } };
     this.productDeleted = this.productDeleted.bind(this);
     this.addProduct = this.addProduct.bind(this);
-    this.handleProductNameChange = this.handleProductNameChange.bind(this);
-    this.handleProductDescChange = this.handleProductDescChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   productDeleted(products: Product[]): void {
@@ -40,17 +39,12 @@ class App extends Component<Props, State> {
     GetData().then(products => this.setState({ products }));
   }
 
-  handleProductNameChange(event: React.FormEvent<HTMLInputElement>): void {
-    const productName = event.currentTarget.value;
-    let { newProduct } = this.state;
-    newProduct.name = productName;
-    this.setState({ newProduct: newProduct });
-  }
+  handleInputChange(event: React.FormEvent<HTMLInputElement>): void {
+    const propertyValue = event.currentTarget.value;
+    const propertyName = event.currentTarget.name;
 
-  handleProductDescChange(event: React.FormEvent<HTMLInputElement>): void {
-    const productDescription = event.currentTarget.value;
     let { newProduct } = this.state;
-    newProduct.description = productDescription;
+    newProduct[propertyName] = propertyValue;
     this.setState({ newProduct: newProduct });
   }
 
@@ -65,16 +59,16 @@ class App extends Component<Props, State> {
             <label>
               Product name:
               <input
-                name='productName'
+                name='name'
                 value={this.state.newProduct.name}
-                onChange={this.handleProductNameChange}
+                onChange={this.handleInputChange}
               />
             </label>
             <label>Product description:
               <input
-                name='productDescription'
+                name='description'
                 value={this.state.newProduct.description}
-                onChange={this.handleProductDescChange}
+                onChange={this.handleInputChange}
               />
             </label>
             <input type='submit' value='Add product' />
