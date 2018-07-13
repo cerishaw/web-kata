@@ -17,8 +17,13 @@ interface State {
 class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
     // Access the REST API instead of grabbing products from data.ts
-    this.state = { products: GetData() };
+    this.state = { products: [] };
+  }
+
+  componentDidMount() {
+    GetData().then(products => this.setState({ products }));
   }
 
   render(): JSX.Element {
