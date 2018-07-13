@@ -6,15 +6,17 @@ import Product from './Product.js'
 
 class ProductContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       products: data.products
     }
   }
 
-  render() {    
+
+  render() {
+    console.log(this.props.match.params.product)
     return <div className='product-container'>
-      Product container
+        {this.props.match.params.product}
     </div>
   }
 }
