@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter, Link } from 'react-router-dom'
 import data from './data.js'
 
 import ProductMenu from './ProductMenu.js'
@@ -25,4 +26,12 @@ class App extends Component {
   }
 }
 
-export default App
+class Router extends Component {
+  render() {
+      return <BrowserRouter>
+          <App/>
+      </BrowserRouter>
+  }
+}
+
+export default Router
